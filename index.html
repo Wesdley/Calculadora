@@ -15,7 +15,10 @@
 <body>
     <h1 class="text">Calculadora</h1>
     <div class="calculator">
-        <input type="text" disabled id="display">
+        <div class="box-display">
+            <input type="text" disabled id="display">
+            <div class="soma" id="soma"></div><!-- soma -->
+        </div><!-- box-display -->
         <div class="box-buttons">
             <button onclick="calculator.clearDisplay()">C</button>
             <button onclick="calculator.backspace()">&lt;</button>

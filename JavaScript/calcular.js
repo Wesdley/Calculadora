@@ -6,11 +6,13 @@ const calculator = {
     insertToDisplay(value) {
         // inserimos o valor no display
         document.querySelector('#display').value += value;
+        this.preview(); // chamamos nossa função
     },
 
     clearDisplay(){
-        // limpamos o display
+        // limpamos o display e preview
         document.querySelector('#display').value = '';
+        document.querySelector('#soma').innerHTML = '';
     },
 
     backspace(){
@@ -18,6 +20,7 @@ const calculator = {
         document.querySelector('#display').value = document.querySelector('#display').value.slice(0, -1);
         /* slice vai remover o ultimo elemento sem mudar o valor da variavel */
         /* começando de 0 e retirando -1 */
+        this.preview(); // chamamos nossa função para efetuar limpeza
     },
 
     result(){
@@ -43,10 +46,13 @@ const calculator = {
             return;
         }
 
-        // utilizamos um try catch para tratar erros de operação
+        // utilizamos um try catch para tratamentos de erros
         try {
+            // utilizando
             const result = evaluate(expression);
             display.value = result;
+            display.style.fontSize = '35px';
+            document.querySelector('#soma').innerHTML = ''; // limpeza do preview quando mandamos calcular
         } catch (e) {
             display.value = 'Operação inválida!'; 
             setTimeout(() => {
@@ -54,6 +60,40 @@ const calculator = {
             }, 2000);
         }
     },
+
+    preview(){
+        // criamos uma funcao para fazer o preview
+        const display = document.querySelector('#display');
+        const preview = document.querySelector('#soma');
+        const expression = display.value;
+
+        // caso não tenha nada no display vai ficar vazio
+        if (!expression) {
+            preview.innerHTML = '';
+            return;
+        }
+
+        // criamos validador de divisão por zero para não dar infinit
+        if (expression.includes('/0') || expression.includes('/ 0')){
+            preview.innerHTML = '';
+            return;
+        }
+
+        // criamos validador para não calcular enquanto não tiver um operador
+        if (/[+\-*/]$/.test(expression)) {
+            preview.innerHTML = '';
+            return;
+        }
+
+        try {
+            // mesmo esquema do result, porém estamos fazendo com que o preview seja dinâmico
+            const result = evaluate(expression);
+            display.style.fontSize = '30px';
+            preview.innerHTML = ` = ${result}`;
+        } catch (e) {
+            preview.innerHTML = '';
+        }
+    }
 };
 
 // criamos uma variavel global com o window
