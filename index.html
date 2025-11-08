@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+
+    <!-- Styles -->
+    
+    <link rel="stylesheet" href="CSS/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- END Style -->
+</head>
+<body>
+    <h1 class="text">Calculadora</h1>
+    <div class="calculator">
+        <input type="text" disabled id="display">
+        <div class="box-buttons">
+            <button onclick="calculator.clearDisplay()">C</button>
+            <button onclick="calculator.backspace()">&lt;</button>
+            <button onclick="calculator.insertToDisplay('/')">/</button>
+            <button onclick="calculator.insertToDisplay('*')">*</button>
+            <button onclick="calculator.insertToDisplay('7')">7</button>
+            <button onclick="calculator.insertToDisplay('8')">8</button>
+            <button onclick="calculator.insertToDisplay('9')">9</button>
+            <button onclick="calculator.insertToDisplay('-')">-</button>
+            <button onclick="calculator.insertToDisplay('4')">4</button>
+            <button onclick="calculator.insertToDisplay('5')">5</button>
+            <button onclick="calculator.insertToDisplay('6')">6</button>
+            <button onclick="calculator.insertToDisplay('+')">+</button>
+            <button onclick="calculator.insertToDisplay('1')">1</button>
+            <button onclick="calculator.insertToDisplay('2')">2</button>
+            <button onclick="calculator.insertToDisplay('3')">3</button>
+            <button onclick="calculator.insertToDisplay('0')" class="btn-zero">0</button>
+            <button onclick="calculator.insertToDisplay('.')">.</button>
+            <button onclick="calculator.result()" class="btn-equal">=</button>
+        </div><!-- box-buttons -->
+    </div><!-- calculator -->
+    <script type="module" src="JavaScript/calcular.js"></script>
+</body>
+</html>

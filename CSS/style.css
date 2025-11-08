@@ -1,0 +1,66 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #2a2a2a;
+}
+
+h1 {
+    color: white;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.calculator {
+    background-color: white;
+    width: 350px;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+#display {
+    width: 100%;
+    height: 100px;
+    border: none;
+    border-radius: 6px;
+    text-align: right;
+    font-size: 20px;
+    padding: 0 5px 0 5px;
+    background-color: #f0f0f0;
+    margin-bottom: 20px;
+}
+
+.box-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-gap: 10px;
+}
+
+.box-buttons button {
+    height: 60px;
+    border-radius: 6px;
+    font-size: 19px;
+    border: 0;
+    cursor: pointer;
+}
+
+.box-buttons button:hover {
+    background-color: #d0dbfa;
+    transition: .4s;
+}
+
+.btn-zero {
+    grid-column: 1 / 3; /* vai começar da 1 coluna e ira até o inicio da 3 coluna */
+}
+
+.btn-equal {
+    height: 100% !important; /* colocamos essa propriedade para ele ocupar toda a linha */
+    grid-row: 4 / 6; /* vai começar da 4 para e finalizar na 6 coluna */
+    grid-column: 4; /* definimos a coluna que ele vai ficar */
+}
+
+
+
