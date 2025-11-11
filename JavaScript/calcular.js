@@ -2,6 +2,22 @@ import { evaluate } from 'https://cdn.jsdelivr.net/npm/mathjs@12.4.1/+esm';
 
 /* Criamos um objeto para armazenar as funções, ao final do arquivo criamos uma variavel global com esse objeto. Aplicamos no HTML o atributo calculator.(sua função) */
 
+/*
+NOTA: Ideias para implementar futuramente:
+- criar preview da expressão ✅
+- criar um historico de contas com um button para abrir e fechar ✅
+- melhoria de qualidade do código ✅
+- keyboard event para digitar ✅
+- criar um botão para limpar historico
+- criar uma forma de guardar o historico no localStorage
+- criar uma forma de recarregar a conta do historico no display
+- temas dark e light
+- copiar e colar
+- atalhos de teclado ctr + c, ctr + v, ctr + h etc...
+- responsividade mobile !IMPORTANTE ✅
+
+*/
+
 const calculator = {
 
     // melhoria de qualidade do código
@@ -74,7 +90,6 @@ const calculator = {
         try {
             const result = evaluate(expression);
             this.display.value = result;
-            this.display.style.fontSize = '35px';
             this.soma.innerHTML = ''; // limpeza do preview quando mandamos calcular
             this.historic.innerHTML += `<p>${expression} = ${result}</p>`; // criamos um histórico de contas efetuadas
         } catch (e) {
@@ -121,7 +136,6 @@ const calculator = {
             // mesmo esquema do result, porém estamos fazendo com que o preview seja dinâmico
 
             const result = evaluate(expression);
-            this.display.style.fontSize = '30px';
             this.soma.innerHTML = ` = ${result}`;
         } catch (e) {
             this.soma.innerHTML = '';
@@ -140,6 +154,45 @@ const calculator = {
         this.viewHistoric.style.display = 'none';
     },
 
+    keyBoard() {
+
+        // criamos uma funçao para digitar com o teclado
+
+        document.addEventListener('keydown', (e) => {
+            const key = e.key;
+
+            // colocamos para que apenas os numeros e os operadores sejam digitados
+
+            if (key >= 0 && key <= 9){ // apenas numeros podem ser colocados
+                this.insertToDisplay(key)
+            } 
+            
+            else if (key == '+' || key == '-' || key == '*' || key == '/') { // definimos os operadores
+                this.insertToDisplay(key)
+            } 
+            
+            else if (key === 'Enter' || key === '=') { // definimos o enter para calcular
+                e.preventDefault(); // tira efeito default do navegador para evitar algum comportamento inesperado
+                this.result();
+            } 
+            
+            else if (key === 'Escape' || key === 'Delete') { // definimos o escape para limpar tudo
+                e.preventDefault(); // tira efeito default do navegador para evitar algum comportamento inesperado
+                this.clearDisplay();
+            } 
+            
+            else if (key === 'Backspace') { // para apagar apenas 1 tecla por vez
+                e.preventDefault(); // tira efeito default do navegador para evitar algum comportamento inesperado
+                this.backspace();
+            } 
+            
+            else if (key === '.' || key === ',') { // definimos o ponto mesmo apertando virgula será aceito
+                this.insertToDisplay('.');
+            }
+
+        })
+    },
+
 };
 
 // Inicializa quando a página carregar
@@ -147,5 +200,7 @@ const calculator = {
 
 document.addEventListener('DOMContentLoaded', () => {
     calculator.init();
+    calculator.keyBoard(); // chamamos nosso evento para que ele funcione
 });
 window.calculator = calculator;
+

@@ -1,3 +1,5 @@
+/* Background */
+
 body {
     display: flex;
     align-items: center;
@@ -8,11 +10,19 @@ body {
     color: black;
 }
 
+/* END Background */
+
+/* Titulo */
+
 h1 {
     color: white;
     font-size: 30px;
     margin-bottom: 20px;
 }
+
+/* END Titulo */
+
+/* Background Calculadora */
 
 .calculator {
     background-color: white;
@@ -20,6 +30,10 @@ h1 {
     border-radius: 10px;
     padding: 25px;
 }
+
+/* END Background Calculadora */
+
+/* Box Display */
 
 .box-display {
     display: flex;
@@ -65,9 +79,11 @@ h1 {
     border-radius: 5px;
     transition: .6s;
     width: 280px;
+    max-height: 400px;
     position: absolute;
     text-align: right;
     z-index: 20;
+    overflow-y: auto; /* Adiciona uma barra de rolagem vertical */
 }
 
 #close {
@@ -101,13 +117,17 @@ h1 {
     text-align: right;
     width: 100%;
     height: calc(100px/3);
-    font-size: 30px;
+    font-size: 35px;
     color: black;
 }
 
 .soma {
     font-size: 20px;
 }
+
+/* END Box Display */
+
+/* Box Buttons */
 
 .box-buttons {
     display: grid;
@@ -139,5 +159,88 @@ h1 {
     grid-column: 4; /* definimos a coluna que ele vai ficar */
 }
 
+/* END Box Buttons */
+
+/* Logo */
+
+.logo h3 {
+    margin-top: 20px;
+    color: white;
+    opacity: 0.4;
+    font-size: 20px;
+}
+
+/* END Logo */
+
+/* Media Queries */
+
+@media screen and (max-width: 500px) {
+    /* background calculadora */
+    .calculator {
+        width: calc(100% - 40px);
+        margin: 0 20px 0 20px;
+    }
+    /* END background calculadora */
+}
+
+@media screen and (max-width: 320px) {
+    /* Background Calculadora */
+    html {
+        height: 100%;
+    }
+    .calculator {
+        padding: 15px;
+    }
+
+    /* END Background Calculadora */
+
+    /* Titulo */
+
+    h1 {
+        font-size: 20px;
+        margin-top: 80px;
+    }
+
+    /* END Titulo */
+
+    /* Box Display */
+
+    .box-display {
+        width: 100%;
+        height: 100px;
+        font-size: 20px;
+        padding: 0 5px 0 5px;
+        margin-bottom: 10px;
+    }
+
+    .view-historic {
+        transition: .6s;
+        width: calc(100vw - 40px);
+        max-height: 200px;
+        right: 20px;
+        padding: 3px;
+    }
+
+    .wraper-display input{
+        font-size: 25px;
+    }
+
+    /* END Box Display */
+
+    /* Box Buttons */
+
+    .box-buttons {
+        grid-gap: 5px;
+    }
+
+    .box-buttons button {
+        height: 50px;
+    }
+
+    /* END Box Buttons */
+
+}
+
+/* END Media Queries */
 
 
