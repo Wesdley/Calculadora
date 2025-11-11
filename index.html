@@ -16,8 +16,20 @@
     <h1 class="text">Calculadora</h1>
     <div class="calculator">
         <div class="box-display">
-            <input type="text" disabled id="display">
-            <div class="soma" id="soma"></div><!-- soma -->
+            <div class="historic">
+                <img id="img-historic" src="img/historia.png" ="imagem de historico" onclick="calculator.openHistoric()">
+                <div class="backdrop" id="backdrop" onclick="calculator.closeHistoric()"></div>
+                <div class="view-historic" id="view-historic" >
+                    <button type="button" id="close" onclick="calculator.closeHistoric()">X</button>
+                    <div class="historic-calc" id="historic-calc">
+                        
+                    </div><!-- historic-calc -->
+                </div><!-- view-historic -->
+            </div><!-- historic -->
+            <div class="wraper-display">
+                <input type="text" disabled id="display">
+                <div class="soma" id="soma"></div><!-- soma -->
+            </div><!-- wraper-display -->
         </div><!-- box-display -->
         <div class="box-buttons">
             <button onclick="calculator.clearDisplay()">C</button>

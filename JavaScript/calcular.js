@@ -5,19 +5,19 @@ import { evaluate } from 'https://cdn.jsdelivr.net/npm/mathjs@12.4.1/+esm';
 const calculator = {
     insertToDisplay(value) {
         // inserimos o valor no display
-        document.querySelector('#display').value += value;
+        const display = document.querySelector('#display').value += value;
         this.preview(); // chamamos nossa função
     },
 
     clearDisplay(){
         // limpamos o display e preview
-        document.querySelector('#display').value = '';
+        display.value = '';
         document.querySelector('#soma').innerHTML = '';
     },
 
     backspace(){
         // deletamos o ultimo elemento colocado utilizando slice
-        document.querySelector('#display').value = document.querySelector('#display').value.slice(0, -1);
+        display.value = document.querySelector('#display').value.slice(0, -1);
         /* slice vai remover o ultimo elemento sem mudar o valor da variavel */
         /* começando de 0 e retirando -1 */
         this.preview(); // chamamos nossa função para efetuar limpeza
@@ -25,8 +25,9 @@ const calculator = {
 
     result(){
         // criamos uma função para calcular
-        const display = document.querySelector('#display'); // pegamos o display
         const expression = display.value; // pegamos o valor do display
+
+        const historic = document.querySelector('#historic-calc'); // pegamos o historic
 
         // criamos validador de divisão por zero
         if (expression.includes('/0') || expression.includes('/ 0')){
@@ -48,11 +49,11 @@ const calculator = {
 
         // utilizamos um try catch para tratamentos de erros
         try {
-            // utilizando
             const result = evaluate(expression);
             display.value = result;
             display.style.fontSize = '35px';
             document.querySelector('#soma').innerHTML = ''; // limpeza do preview quando mandamos calcular
+            historic.innerHTML += `<p>${expression} = ${result}</p>`; // criamos um histórico de contas efetuadas
         } catch (e) {
             display.value = 'Operação inválida!'; 
             setTimeout(() => {
@@ -63,7 +64,6 @@ const calculator = {
 
     preview(){
         // criamos uma funcao para fazer o preview
-        const display = document.querySelector('#display');
         const preview = document.querySelector('#soma');
         const expression = display.value;
 
@@ -93,7 +93,22 @@ const calculator = {
         } catch (e) {
             preview.innerHTML = '';
         }
-    }
+    },
+
+    // funçao para abrir e fechar o historico
+    openHistoric(){
+        const historic = document.querySelector('.view-historic');
+        const backdrop = document.querySelector('#backdrop');
+        backdrop.style.display = 'block';
+        historic.style.display = 'block';
+    },
+
+    closeHistoric(){
+        const viewHistoric = document.querySelector('.view-historic');
+        backdrop.style.display = 'none';
+        viewHistoric.style.display = 'none';
+    },
+
 };
 
 // criamos uma variavel global com o window
