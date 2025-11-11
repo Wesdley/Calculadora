@@ -13,6 +13,14 @@
     <!-- END Style -->
 </head>
 <body>
+    <div class="wraper-toggle-slider">
+        <button class="theme-toggle" aria-label="Alterna tema" onclick="calculator.toggleTheme()">
+            <div class="toggle-slider" id="#toggle-slider">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </div><!-- toggle-slider -->
+        </button><!-- theme -->
+    </div><!-- wraper-toggle-slider -->
     <h1 class="text">Calculadora</h1>
     <div class="calculator">
         <div class="box-display">
@@ -32,24 +40,24 @@
             </div><!-- wraper-display -->
         </div><!-- box-display -->
         <div class="box-buttons">
-            <button onclick="calculator.clearDisplay()">C</button>
-            <button onclick="calculator.backspace()">&lt;</button>
-            <button onclick="calculator.insertToDisplay('/')">/</button>
-            <button onclick="calculator.insertToDisplay('*')">*</button>
-            <button onclick="calculator.insertToDisplay('7')">7</button>
-            <button onclick="calculator.insertToDisplay('8')">8</button>
-            <button onclick="calculator.insertToDisplay('9')">9</button>
-            <button onclick="calculator.insertToDisplay('-')">-</button>
-            <button onclick="calculator.insertToDisplay('4')">4</button>
-            <button onclick="calculator.insertToDisplay('5')">5</button>
-            <button onclick="calculator.insertToDisplay('6')">6</button>
-            <button onclick="calculator.insertToDisplay('+')">+</button>
-            <button onclick="calculator.insertToDisplay('1')">1</button>
-            <button onclick="calculator.insertToDisplay('2')">2</button>
-            <button onclick="calculator.insertToDisplay('3')">3</button>
-            <button onclick="calculator.insertToDisplay('0')" class="btn-zero">0</button>
-            <button onclick="calculator.insertToDisplay('.')">.</button>
-            <button onclick="calculator.result()" class="btn-equal">=</button>
+            <button onclick="calculator.clearDisplay()" class="operation">C</button>
+            <button onclick="calculator.backspace()" class="operation">&lt;</button>
+            <button onclick="calculator.insertToDisplay('/')" class="operation">/</button>
+            <button onclick="calculator.insertToDisplay('*')" class="operation">*</button>
+            <button onclick="calculator.insertToDisplay('7')" class="number">7</button>
+            <button onclick="calculator.insertToDisplay('8')" class="number">8</button>
+            <button onclick="calculator.insertToDisplay('9')" class="number">9</button>
+            <button onclick="calculator.insertToDisplay('-')" class="operation">-</button>
+            <button onclick="calculator.insertToDisplay('4')" class="number">4</button>
+            <button onclick="calculator.insertToDisplay('5')" class="number">5</button>
+            <button onclick="calculator.insertToDisplay('6')" class="number">6</button>
+            <button onclick="calculator.insertToDisplay('+')" class="operation">+</button>
+            <button onclick="calculator.insertToDisplay('1')" class="number">1</button>
+            <button onclick="calculator.insertToDisplay('2')" class="number">2</button>
+            <button onclick="calculator.insertToDisplay('3')" class="number">3</button>
+            <button onclick="calculator.insertToDisplay('0')" class="btn-zero number">0</button>
+            <button onclick="calculator.insertToDisplay('.')" class="number">.</button>
+            <button onclick="calculator.result()" class="btn-equal operation">=</button>
         </div><!-- box-buttons -->
     </div><!-- calculator -->
     <div class="logo">

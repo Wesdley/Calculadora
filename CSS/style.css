@@ -1,3 +1,40 @@
+/* Cores Light e Dark*/
+
+:root {
+    --bg-primary: #3a3a3a;
+    --bg-secondary: white;
+    --text-primary: white;
+    --text-secondary: rgb(38, 38, 38);
+    --text-tertiary: #8b8b8b;
+    --bg-buttons: #e0e0e0;
+    --buttons-hover: #d0d0d0;
+    --bg-buttons-operation: #ff9500;
+    --buttons-operator-hover: #ff8000;
+    --bg-display: #f0f0f0;
+    --bg-backdrop: rgba(70, 70, 70, 0.8);
+    --border: #ddd;
+}
+
+/* utilizamos o data theme para trocar o tema da calculadora */
+
+[data-theme="dark"] {
+    /* Cores Dark Mode */
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --text-tertiary: #8b8b8b;
+    --bg-buttons: #3a3a3a;
+    --buttons-hover: #4a4a4a;
+    --bg-buttons-operator: #ff9500;
+    --buttons-operator-hover: #ff8000;
+    --bg-display: #252525;
+    --bg-backdrop: rgba(100, 100, 100, 0.3);
+    --border: #444;
+}
+
+/* END Cores Light e Dark */
+
 /* Background */
 
 body {
@@ -6,7 +43,7 @@ body {
     justify-content: center;
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #2a2a2a;
+    background-color: var(--bg-primary);
     color: black;
 }
 
@@ -15,17 +52,88 @@ body {
 /* Titulo */
 
 h1 {
-    color: white;
+    color: var(--text-primary);
     font-size: 30px;
     margin-bottom: 20px;
 }
 
 /* END Titulo */
 
+/* Theme */
+
+.wraper-toggle-slider {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.theme-toggle {
+    position: relative;
+    width: 70px;
+    height: 34px;
+    background: var(--toggle-bg);
+    border: 2px solid var(--border);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.6s ease;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-slider {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    background: var(--toggle-slider);
+    font-size: 14px;
+    left: 4px;
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 45%;
+    transform: translateY(-50%);
+}
+
+/* Dark Mode quando está ativo move a bolinha para direita */
+[data-theme="dark"] .toggle-slider {
+    left: calc(100% - 30px); /* Move para a direita */
+}
+
+.sun-icon, .moon-icon {
+    font-size: 20px;
+    position: absolute;
+    transition: all 0.6s ease;
+}
+
+.sun-icon {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+.moon-icon {
+    opacity: 0;
+    transform: scale(0) rotate(180deg);
+}
+
+/* dark mode: esconde sol, mostra a lua */
+[data-theme="dark"] .sun-icon {
+    opacity: 0;
+    transform: scale(0) rotate(-180deg);
+}
+
+[data-theme="dark"] .moon-icon {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+/* END Theme */
+
 /* Background Calculadora */
 
 .calculator {
-    background-color: white;
+    background-color: var(--bg-secondary);
     width: 350px;
     border-radius: 10px;
     padding: 25px;
@@ -44,8 +152,9 @@ h1 {
     text-align: right;
     font-size: 20px;
     padding: 0 5px 0 5px;
-    background-color: #f0f0f0;
+    background-color: var(--bg-display);
     margin-bottom: 20px;
+    border: var(--border) solid 2px;
 }
 
 .historic {
@@ -63,7 +172,7 @@ h1 {
 
 .backdrop {
     z-index: 10;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: var(--bg-backdrop);
     position: absolute;
     left: 0;
     top: 0;
@@ -74,10 +183,9 @@ h1 {
 
 .view-historic {
     display: none;
-    background-color: white;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: var(--bg-secondary);
     border-radius: 5px;
-    transition: .6s;
+    transition: .5s;
     width: 280px;
     max-height: 400px;
     position: absolute;
@@ -87,18 +195,24 @@ h1 {
 }
 
 #close {
-    background-color: white;
+    background-color: (var(--bg-secondary));
     cursor: pointer;
     font-size: 15px;
-    color: #8b8b8b;
-    margin: 10px;
+    font-weight: bold;
+    color: var(--text-tertiary);
     border: 0;
+    margin-right: 5px;
+}
+
+#close:hover {
+    color: var(--text-secondary);
 }
 
 .historic-calc {
     text-align: left;
     font-size: 20px;
-    color: black;
+    color: var(--text-secondary);
+    font-weight: bold;
     margin: 0 10px 10px 10px;
 }
 
@@ -113,16 +227,17 @@ h1 {
 .box-display input {
     width: calc(100% - 30px);
     border: 0;
-    background-color: #f0f0f0;
+    background-color: var(--bg-display);
     text-align: right;
     width: 100%;
     height: calc(100px/3);
     font-size: 35px;
-    color: black;
+    color: var(--text-secondary);
 }
 
 .soma {
     font-size: 20px;
+    color: var(--text-secondary);
 }
 
 /* END Box Display */
@@ -144,8 +259,25 @@ h1 {
     cursor: pointer;
 }
 
-.box-buttons button:hover {
-    background-color: #d0dbfa;
+.operation {
+    color: var(--text-primary);
+    font-weight: bold;
+    background-color: var(--bg-buttons-operation);
+}
+
+.operation:hover {
+    background-color: var(--buttons-operator-hover);
+    transition: .4s
+}
+
+.number {
+    color: var(--text-secondary);
+    font-weight: bold;
+    background-color: var(--bg-buttons);
+}
+
+.number:hover {
+    background-color: var(--buttons-hover);
     transition: .4s;
 }
 

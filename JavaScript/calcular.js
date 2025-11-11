@@ -28,6 +28,7 @@ const calculator = {
     historic: null,
     viewHistoric: null,
     backdrop: null,
+    toggleSlider: null,
 
     // iniciamos os elementos do DOM antes de utilizar
 
@@ -37,6 +38,7 @@ const calculator = {
         this.historic = document.querySelector('#historic-calc');
         this.viewHistoric = document.querySelector('#view-historic');
         this.backdrop = document.querySelector('#backdrop');
+        this.toggleSlider = document.querySelector('#toggle-slider');
     },
 
 
@@ -193,7 +195,24 @@ const calculator = {
         })
     },
 
+    /* Dark Mode */
+
+    toggleTheme() {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        this.setDarkMode(!isDark);
+    },
+
+    setDarkMode(isDark) {
+
+        if (isDark) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+        else {
+            document.documentElement.removeAttribute('data-theme');
+        }
+    }
 };
+
 
 // Inicializa quando a página carregar
 // NOTA: O DOMContentLoaded é um evento disparado quando o DOM for carregado
