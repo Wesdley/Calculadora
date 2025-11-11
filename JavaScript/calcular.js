@@ -99,7 +99,7 @@ const calculator = {
         // caso não tenha nada no display vai ficar vazio
 
         if (!expression) {
-            this.preview.innerHTML = '';
+            this.soma.innerHTML = '';
             return;
         }
 
@@ -113,7 +113,7 @@ const calculator = {
         // criamos validador para não calcular enquanto não tiver um operador
 
         if (/[+\-*/]$/.test(expression)) {
-            this.preview.innerHTML = '';
+            this.soma.innerHTML = '';
             return;
         }
 
@@ -122,9 +122,9 @@ const calculator = {
 
             const result = evaluate(expression);
             this.display.style.fontSize = '30px';
-            this.preview.innerHTML = ` = ${result}`;
+            this.soma.innerHTML = ` = ${result}`;
         } catch (e) {
-            this.preview.innerHTML = '';
+            this.soma.innerHTML = '';
         }
     },
 
